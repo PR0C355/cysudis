@@ -1,0 +1,27 @@
+Commands (Statements that trigger actions):
+!birthtime - Sends the date and time your discord account was made
+!sus - Gives a random person to be suspicious of, aswell as a a reason
+!impostorverse - Sends a verse from the bible I deemed related to being an impostor
+!crewmateverse - Sends a verse from the bible I deemed related to being a crewmate
+!members - Sends a list of all members of the discord server
+!cbt - If you know, you know. (Only available to authorized users)
+!beemovie - Sends the entirety of the bee movie script from beginning to end (Only available to authorized users)
+!vcjoin - Adds the bot to your current connected voice channel (No full voice funcitonality yet)
+!vcleave -  Removes the bot to your current connected voice channel (No full voice funcitonality yet)
+!opuscheck - Little dev functino relating to voice
+!rngvote - Mentions a random member of the server to vote out
+!time - Sends a message of the current date and time
+
+
+Content Responses (Something should happen when you say these things, if they're capitalized correctly):
+Hey son or hey son
+Hello or hello
+debit card (The entirety of this conversation. If you know, you know.)
+anime
+japanese cartoon
+gay
+am illiterate
+among us tonight
+
+
+
