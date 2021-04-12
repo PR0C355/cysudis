@@ -7,8 +7,8 @@ from discord import voice_client
 import datetime
 
 
-
-TOKEN = str(os.environ.get('BOTTOKEN'))
+TOKEN = 'Nzc5NTI2NTY3ODc3NTQxOTM4.X7h0sA.gaw5cOeP87oy5QKIFCMl5_5R0KM'
+#TOKEN = str(os.environ.get('BOTTOKEN'))
 
 encryptedtext = []
 encryptedvalues = []
