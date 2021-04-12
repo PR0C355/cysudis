@@ -6,8 +6,9 @@ from discord import client
 from discord import voice_client
 import datetime
 
-TOKEN = 'Nzc5NTI2NTY3ODc3NTQxOTM4.X7h0sA.F-l17vSbaNFCJCLd2kYtKwn4dC0'
 
+
+TOKEN = os.environ.get('TOKEN')
 
 encryptedtext = []
 encryptedvalues = []
@@ -85,6 +86,10 @@ special_index = [' ', '!', '?', '(', ')', '@', '#', '$', '%', '^', '&', '*', '_'
 
 
 """
+
+reactionImages = ["https://cdn.discordapp.com/attachments/763590055948189696/788059504532389938/image0.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/808126193614323732/2Q.png", "https://cdn.discordapp.com/attachments/763590055948189696/804382226309185546/image0.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764638377246720/image0.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764638514872320/image1.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764638687494174/image2.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764638917394463/image3.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764639102074930/image4.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764639299469382/image5.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764639509315604/image6.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764639781421126/image7.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764640025346058/image8.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764640175816774/image9.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764715270504468/image0.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764715447582790/image1.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764715569479700/image2.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764715816157214/image3.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764715979341864/image4.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764716282380358/image5.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764716449759342/image6.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764716605472839/image7.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764716931973150/image8.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764717171441706/image9.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764799325536286/image0.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764799559761940/image1.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764799743787039/image2.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764799874203708/image3.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764800185368597/image4.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764800386564126/image5.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764800641892372/image6.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764800788168714/image7.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764801145077790/image8.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764801459388417/image9.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764849413128192/image0.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764849639751720/image1.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764849866768454/image2.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764850147393536/image3.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764850307301376/image4.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764850570756157/image5.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764850772213770/image6.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764851111559188/image7.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764851397427210/image8.jpg", "https://cdn.discordapp.com/attachments/763590055948189696/825764851593773107/image9.jpg"
+]
+
 leaveEvents = ["was not the impostor.", "was the impostor.", "failed to have the exaggerated swagger of a black teen.", "was too gay for the system to handle.", "is fucking dead.", "became a demon.", "drank the demon's blood"  ]
 leaveEvent = random.choice(leaveEvents)
 # Intent declaration
@@ -100,6 +105,9 @@ async def on_member_remove(member):
     leaveEvent = random.choice(leaveEvents)
     channel = client.get_channel(775941210119733269)
     await channel.send(f"{member.mention} {leaveEvent}")
+    invite = await channel.create_invite()
+    await member.create_dm
+    await channel.send("Alright, come back now: " + invite)
 
 @client.event
 async def on_member_join(member):
@@ -110,6 +118,17 @@ async def on_member_join(member):
     joinEvent = random.choice(joinEvents)
     channel = client.get_channel(775941210119733269)
     await channel.send(f"{member.mention} {joinEvent}")
+    role = discord.utils.get(member.server.roles, name=tumi)
+    if member.id == 196762513172463617:
+        await client.add_roles(member, role)
+
+@client.event
+async def on_member_update(before,after):
+    if 'tumi' in str(after.roles):
+        if 'tumi' in member.roles:
+            await member.remove_roles('tumi')
+
+
 
 
 @client.event
@@ -126,14 +145,43 @@ async def on_message(message):
     store.write(str(message.created_at) + "\n")
     print("Channel: #" + channelinuse)
     store.write("Channel: #" + channelinuse + "\n")
-    print("Message: " + message.content)
-    store.write("Message: " + message.content + "\n")
+    if len(message.attachments) >= 1:
+        print ("Message: " + str(message.content))
+        print ("Attachment(s): " + str(message.attachments))
+        store.write("Message: " + str(message.content) + "\n")
+        store.write("Attachment(s): " + str(message.attachments) + "\n")
+    else:
+        print ("Message: " + str(message.content))
+        store.write("Message: " + message.content + "\n")
     print("")
     store.write("\n")
     store.close()
 
+    if 'damn' in message.content.lower():
+        if message.channel.id == 826796405293056030:
+            if message.author.id != 779526567877541938:
+                await message.delete()
+            await message.channel.send('***damn***')
+
     if message.author == client.user:
         return
+
+    if 'damn' in message.content.lower():
+        await message.channel.send('***damn***')
+
+    if 'Direct Message' in channelinuse:
+        if authuser != 'MaximusWrath346#5386':
+            user = client.get_user(196762513172463617)
+            recieved_message = str(message.content)
+            await user.send(authuser + ': ' + recieved_message)
+
+
+    if channelinuse == 'Direct Message with MaximusWrath346#5386':
+        channel = client.get_channel(775944103397163028)
+        user = client.get_user(641267423604899870)
+        message_send = message.content
+        await channel.send(message_send)
+
 
 
 
@@ -146,6 +194,10 @@ async def on_message(message):
 
     beeMovieRole = discord.utils.get(user.guild.roles, name="tumi")
 
+
+    if 'supercalifragilisticexpialidDMcius' in message.content:
+        await message.channel.send("Hi! I don't really have much DM functionality right now, but my Creator is working on it!")
+
     if message.content.startswith('Hey son'):
         await message.channel.send('Hi Dad!')
     if message.content.startswith('hey son'):
@@ -154,6 +206,12 @@ async def on_message(message):
         await message.channel.send('Hello!')
     if message.content.startswith('hello'):
         await message.channel.send('Hello!')
+    if message.content.lower().startswith('gn'):
+        await message.channel.send('Goodnight!')
+    if message.content.lower().startswith('goodnight'):
+        await message.channel.send('Goodnight!')
+    if message.content.lower().startswith('good night'):
+        await message.channel.send('Goodnight!')
     if message.content.startswith('!impostorverse'):
         await message.channel.send('We serve God whether people honor us or despise us, whether they slander us '
                                        'or praise us. We are honest, but they call us impostors.')
@@ -193,7 +251,14 @@ async def on_message(message):
     if message.content.startswith('a year ago'):
         await message.channel.send('what was a year ago?')
 
+    if 'Doug Dimmadome' in message.content:
 
+        await message.channel.send( 'Doug Dimmadome?')
+        await message.channel.send('Owner of the Dimmsdale Dimmadome?')
+
+    if message.content.startswith('Yes, Doug Dimmadome, owner of the Dimmsdale Dimmadome'):
+        await message.channel.send('Ah yes, Doug Dimmadome')
+        await message.channel.send('Owner of the Dimmsdale Dimmadome')
 
 
     susReasons = ["vented.", "vented right in front of me.", "faked trash.", "faked asteroids.",
@@ -219,24 +284,57 @@ async def on_message(message):
         for i in range(memberListLength):
             await message.channel.send(sortedExistingMembers[i])
 
+    if 'sus' in message.content.lower():
+        await message.channel.send('⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢊⠘⡮⣣⠪⠢⡑⡌ ⠀⠀⠀⠟⠝⠈⠀⠀⠀⠡⠀⠠⢈⠠⢐⢠⢂⢔⣐⢄⡂⢔⠀⡁⢉⠸⢨⢑⠕⡌ '
+                                   '⠀⠀⡀⠁⠀⠀⠀⡀⢂⠡⠈⡔⣕⢮⣳⢯⣿⣻⣟⣯⣯⢷⣫⣆⡂⠀⠀⢐⠑⡌ ⢀⠠⠐⠈⠀⢀⢂⠢⡂⠕⡁⣝⢮⣳⢽⡽⣾⣻⣿⣯⡯⣟⣞⢾⢜⢆⠀⡀⠀⠪ '
+                                   '⣬⠂⠀⠀⢀⢂⢪⠨⢂⠥⣺⡪⣗⢗⣽⢽⡯⣿⣽⣷⢿⡽⡾⡽⣝⢎⠀⠀⠀⢡ ⣿⠀⠀⠀⢂⠢⢂⢥⢱⡹⣪⢞⡵⣻⡪⡯⡯⣟⡾⣿⣻⡽⣯⡻⣪⠧⠑⠀⠁⢐ '
+                                   '⣿⠀⠀⠀⠢⢑⠠⠑⠕⡝⡎⡗⡝⡎⣞⢽⡹⣕⢯⢻⠹⡹⢚⠝⡷⡽⡨⠀⠀⢔ ⣿⡯⠀⢈⠈⢄⠂⠂⠐⠀⠌⠠⢑⠱⡱⡱⡑⢔⠁⠀⡀⠐⠐⠐⡡⡹⣪⠀⠀⢘ '
+                                   '⣿⣽⠀⡀⡊⠀⠐⠨⠈⡁⠂⢈⠠⡱⡽⣷⡑⠁⠠⠑⠀⢉⢇⣤⢘⣪⢽⠀⢌⢎ ⣿⢾⠀⢌⠌⠀⡁⠢⠂⠐⡀⠀⢀⢳⢽⣽⡺⣨⢄⣑⢉⢃⢭⡲⣕⡭⣹⠠⢐⢗ '
+                                   '⣿⡗⠀⠢⠡⡱⡸⣔⢵⢱⢸⠈⠀⡪⣳⣳⢹⢜⡵⣱⢱⡱⣳⡹⣵⣻⢔⢅⢬⡷ ⣷⡇⡂⠡⡑⢕⢕⠕⡑⠡⢂⢊⢐⢕⡝⡮⡧⡳⣝⢴⡐⣁⠃⡫⡒⣕⢏⡮⣷⡟ '
+                                   '⣷⣻⣅⠑⢌⠢⠁⢐⠠⠑⡐⠐⠌⡪⠮⡫⠪⡪⡪⣺⢸⠰⠡⠠⠐⢱⠨⡪⡪⡰ ⣯⢷⣟⣇⡂⡂⡌⡀⠀⠁⡂⠅⠂⠀⡑⡄⢇⠇⢝⡨⡠⡁⢐⠠⢀⢪⡐⡜⡪⡊ '
+                                   '⣿⢽⡾⢹⡄⠕⡅⢇⠂⠑⣴⡬⣬⣬⣆⢮⣦⣷⣵⣷⡗⢃⢮⠱⡸⢰⢱⢸⢨⢌ ⣯⢯⣟⠸⣳⡅⠜⠔⡌⡐⠈⠻⠟⣿⢿⣿⣿⠿⡻⣃⠢⣱⡳⡱⡩⢢⠣⡃⠢⠁ '
+                                   '⡯⣟⣞⡇⡿⣽⡪⡘⡰⠨⢐⢀⠢⢢⢄⢤⣰⠼⡾⢕⢕⡵⣝⠎⢌⢪⠪⡘⡌⠀ ⡯⣳⠯⠚⢊⠡⡂⢂⠨⠊⠔⡑⠬⡸⣘⢬⢪⣪⡺⡼⣕⢯⢞⢕⢝⠎⢻⢼⣀⠀ '
+                                   '⠁⡂⠔⡁⡢⠣⢀⠢⠀⠅⠱⡐⡱⡘⡔⡕⡕⣲⡹⣎⡮⡏⡑⢜⢼⡱⢩⣗⣯⣟ ⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾ '
+                                   '⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽')
 
-    if 'japanese cartoon' in message.content:
+    if 'amogus' in message.content:
+        await message.channel.send('⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣤⣀⣀⣀.⣀⡀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⠟⠉⠉⠉⠉⠉⠉⠉⠙⠻⢶⣄⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣷⡀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡟⠀⣠⣶⠛⠛⠛⠛⠛⠛⠳⣦⡀⠀⠘⣿⡄⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠁⠀⢹⣿⣦⣀⣀⣀⣀⣀⣠⣼⡇⠀⠀⠸⣷⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡏⠀⠀⠀⠉⠛⠿⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀⣿⡄⣠ ⠀⠀⢀⣀⣀⣀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡇⠀ ⠿⠿⠟⠛⠛⠉⠀⠀⣸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀ ⠀⠀⠀⠀⠀⠀⠀⢸⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⠀ ⠀⠀⠀⠀⠀⠀⠀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀ ⠀⠀⠀⠀⠀⠀⠀⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀ ⠀⠀⠀⠀⠀⠀⢰⣿⠀⠀⠀⠀⣠⡶⠶⠿⠿⠿⠿⢷⣦⠀⠀⠀⠀⠀⠀⠀⣿⠀ ⠀⠀⣀⣀⣀⠀⣸⡇⠀⠀⠀⠀⣿⡀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⣿⠀ ⣠⡿⠛⠛⠛⠛⠻⠀⠀⠀⠀⠀⢸⣇⠀⠀⠀⠀⠀⠀⣿⠇⠀⠀⠀⠀⠀⠀⣿⠀ ⢻⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⡟⠀⠀⢀⣤⣤⣴⣿⠀⠀⠀⠀⠀⠀⠀⣿⠀ ⠈⠙⢷⣶⣦⣤⣤⣤⣴⣶⣾⠿⠛⠁⢀⣶⡟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡟⠀ ⢷⣶⣤⣀⠉⠉⠉⠉⠉⠄⠀⠀⠀⠀⠈⣿⣆⡀⠀⠀⠀⠀⠀⠀⢀⣠⣴⡾⠃⠀ ⠀⠈⠉⠛⠿⣶⣦⣄⣀⠀⠀⠀⠀⠀⠀⠈⠛⠻⢿⣿⣾⣿⡿⠿⠟⠋⠁⠀⠀⠀')
+
+    if '**LittleHanger** and' in message.content:
+        await message.channel.send("Hey Logan? Fuck you. That is all. Maybe you did something, maybe you didn't, but this is a preemptive measure.")
+        await message.channel.send('-Tumi')
+
+    if 'japanese cartoon' in message.content.lower():
         await message.channel.send('Shut it weeb')
-    if 'gay' in message.content:
-        await message.channel.send('Yes, yes, we all know how gay you are now shut up')
-    if 'Gay' in message.content:
-        await message.channel.send('Yes, yes, we all know how gay you are now shut up')
-    if 'am illiterate' in message.content:
+    if 'gay' in message.content.lower():
+        if message.author.id == 196762513172463617:
+            if 'not gay' in message.content.lower():
+                await message.channel.send('True that is indeed very much not gay.')
+            else:
+                await message.channel.send('Yes, very much gay')
+
+        else:
+            await message.channel.send('Yes, yes, we all know how gay you are now shut up')
+
+    if 'am illiterate' in message.content.lower():
         await message.channel.send('Then go back to grade school')
-    if 'Am illiterate' in message.content:
-        await message.channel.send('Then go back to grade school')
-    if 'am Illiterate' in message.content:
-        await message.channel.send('Then go back to grade school')
+
+    if message.content.startswith('!telltalegame'):
+        await message.delete()
+        await message.channel.send(f'{message.author.mention} *will remember that.*')
+
+
     if 'Am Illiterate' in message.content:
         await message.channel.send('Then go back to grade school')
 
-    beeMovieRole = discord.utils.get(user.guild.roles, name="Tumi")
-    cbtRole = discord.utils.get(user.guild.roles, name="Tumi")
+    beeMovieRole = discord.utils.get(user.guild.roles, name="tumi")
+    cbtRole = discord.utils.get(user.guild.roles, name="tumi")
+
+    print (channelinuse)
+
+
+
+
 
     if cbtRole in message.author.roles:
         if message.content.startswith('!cbt'):
@@ -245,6 +343,7 @@ async def on_message(message):
             for chunk in [cbtWikipedia_contents[i:i + 2000] for i in range(0, len(cbtWikipedia_contents), 2000)]:
                 await message.channel.send(chunk)
             cbtWikipedia.close()
+
     if adminRole in message.author.roles:
         if message.content.startswith('!missileguidance'):
             print(os.getcwd())
@@ -291,6 +390,35 @@ async def on_message(message):
             print('')
             await message.channel.send(speech)
 
+    if 'my man' in message.content.lower():
+        await message.channel.send('https://cdn.discordapp.com/attachments/775944001148813332/804373419751112716/Z.png')
+
+    if 'pain' in message.content.lower():
+        await message.channel.send('https://cdn.discordapp.com/attachments/775944001148813332/804373905501716541/Z.png')
+
+    if message.content.lower().startswith('my man'):
+        await message.channel.send('https://cdn.discordapp.com/attachments/775944001148813332/804373460394442772/Z.png')
+
+    if message.content.lower().startswith('!reactionimage'):
+        await message.delete()
+        chosenReactionImage = random.choice(reactionImages)
+        await message.channel.send(f"{message.author.mention}, here's your reaction image:")
+        await message.channel.send(chosenReactionImage)
+
+    if message.content.lower().startswith('!ri'):
+        await message.delete()
+        chosenReactionImage = random.choice(reactionImages)
+        await message.channel.send(f"{message.author.mention}, here's your reaction image:")
+        await message.channel.send(chosenReactionImage)
+
+    if message.content.lower().startswith('I need a reaction image'):
+        await message.delete()
+        chosenReactionImage = random.choice(reactionImages)
+        await message.channel.send(f"{message.author.mention}, here's your reaction image:")
+        await message.channel.send(chosenReactionImage)
+
+    if 'is for me' in message.content.lower():
+        await message.channel.send('https://cdn.discordapp.com/attachments/763590055948189696/804382226309185546/image0.jpg')
 
 
     if adminRole in message.author.roles:
@@ -300,6 +428,64 @@ async def on_message(message):
             await message.delete()
             await message.channel.send(speak)
             return
+
+    if message.content.lower().startswith('!ga'):
+        givestuffmessage = message.content
+        givestuffmessagebreakdown = givestuffmessage.replace('!ga', '')
+        givelist = open('givelist.txt', 'a')
+        givelist.write(givestuffmessagebreakdown + "\n")
+        givelist.close()
+        emoji = '✅'
+        await message.add_reaction(emoji)
+    if adminRole in message.author.roles:
+        if message.content.lower().startswith('!gr'):
+            giveremovemessage = message.content
+            giveremovemessagebreakdown = giveremovemessage.replace('!gr', '')
+            givelist = open('givelist.txt', 'r')
+            if giveremovemessagebreakdown in givelist.read():
+                lines = givelist.readlines()
+                givelist.close()
+                givelist = open('givelist.txt', 'a')
+                for line in lines:
+                    if line.strip("\n") == giveremovemessagebreakdown:
+                        linetoberemoved = False
+                    else:
+                        givelist.write(line)
+                givelist.close()
+                emoji = '✅'
+                await message.add_reaction(emoji)
+
+    if adminRole in message.author.roles:
+        if message.content.startswith('!gl'):
+            givelist = open('givelist.txt', 'r')
+            givelistcontent = givelist.read()
+            for chunk in [givelistcontent[i:i + 2000] for i in range(0, len(givelistcontent), 2000)]:
+                await message.channel.send(chunk)
+            givelist.close()
+            emoji = '✅'
+            await message.add_reaction(emoji)
+
+
+
+    if adminRole in message.author.roles:
+        if message.content.lower().startswith('!kick'):
+            kickrequest = message.content
+            kickrequest = kickrequest.replace('!kick ', '')
+            kickrequest = kickrequest.replace('<@!', '')
+            kickrequest = kickrequest.replace('>', '')
+            await message.delete()
+            kickrequestuser = message.guild.get_member(int(kickrequest))
+            await message.guild.kick(kickrequestuser)
+
+    if adminRole in message.author.roles:
+        if message.content.lower().startswith('!ban'):
+            banrequest = message.content
+            banrequest = banrequest.replace('!ban ', '')
+            banrequest = banrequest.replace('<@!', '')
+            banrequest = banrequest.replace('>', '')
+            await message.delete()
+            banrequestuser = message.guild.get_member(int(banrequest))
+            await message.guild.ban(banrequestuser)
 
     if adminRole in message.author.roles:
         if message.content.startswith('!changepresenceplaying'):
@@ -321,7 +507,7 @@ async def on_message(message):
         if message.content.startswith('!changepresencewatching'):
             watchingcontent = message.content
             watchingpresence = watchingcontent.replace('!changepresencewatching', '')
-            a   wait message.delete()
+            await message.delete()
             cmdwatchingpresence = discord.Activity(type=discord.ActivityType.watching, name=watchingpresence)
             await client.change_presence(activity=cmdwatchingpresence)
 
@@ -333,6 +519,9 @@ async def on_message(message):
             cmdstreamingpresence = discord.Activity(type=discord.ActivityType.streaming, name=streamingpresence)
             await client.change_presence(activity=cmdstreamingpresence)
 
+
+    if message.content.lower().startswith('$ci'):
+        await message.delete()
 
     if message.content.startswith('among us tonight'):
         await message.channel.send('No, now shut it.')
@@ -350,9 +539,31 @@ async def on_message(message):
     if message.content.startswith('!instant'):
         await message.channel.send('No, now shut it.')
 
-
     if message.author.id == 251481402090979329:
-        nothing = ''
+        if message.content.lower().startswith('$wish megumin'):
+            await message.channel.send("ALERT! ALERT! LOGAN IS BEING A FUCKWAD")
+            await message.channel.send('<@!196762513172463617>')
+            await message.channel.send("ALERT! ALERT! LOGAN IS BEING A FUCKWAD")
+            await message.channel.send('<@!196762513172463617>')
+            await message.channel.send("ALERT! ALERT! LOGAN IS BEING A FUCKWAD")
+            await message.channel.send('<@!196762513172463617>')
+        if 'cuck' in message.content:
+            await message.channel.send('Dictionary Definition:'
+                                       'DEROGATORY•INFORMAL'
+                                       '1. a weak or servile man (often used as a contemptuous term for a man with moderate or progressive political views).'
+                                       '2. a man whose wife is sexually unfaithful; a cuckold.')
+            await message.channel.send('Urban Definition:'
+                                        'A man who lets his wife or girlfriend have sex with other men. Often the man lets her do whatever she wants and treat him like shit.'
+                                        '(Short version of cuckold)')
+
+
+
+
+    if 'dang' in message.content.lower():
+        await message.channel.send('***dang***')
+
+    if 'darn' in message.content.lower():
+        await message.channel.send('***darn***')
 
     if 'fortnite' in message.content:
         if message.author.id != 196762513172463617:
@@ -380,11 +591,57 @@ async def on_message(message):
             await user.kick(reason="Logan Told Me To")
             await message.channel.send('https://cdn.discordapp.com/attachments/788121984327745546/788122182789365780/image1.jpg')
 
-    if '-_-' in message.content:
-        if message.author.id != 196762513172463617:
+    if '_' in message.content:
+        if message.author.id == 251481402090979329:
+            await message.channel.send('https://cdn.discordapp.com/attachments/763590055948189696/808126193614323732/2Q.png')
+
+    if 'one piece' in message.content:
+        if message.author.id == 224988545402535936:
             await user.kick()
             await message.channel.send('https://cdn.discordapp.com/attachments/788121984327745546/788122182789365780/image1.jpg')
 
+    if '0ne p1ece' in message.content:
+        if message.author.id == 224988545402535936:
+            await user.kick()
+            await message.channel.send('https://cdn.discordapp.com/attachments/788121984327745546/788122182789365780/image1.jpg')
+
+
+    if '1piece' in message.content:
+        if message.author.id == 224988545402535936:
+            await user.kick()
+            await message.channel.send('https://cdn.discordapp.com/attachments/788121984327745546/788122182789365780/image1.jpg')
+
+    if '1Piece' in message.content:
+        if message.author.id == 224988545402535936:
+            await user.kick()
+            await message.channel.send('https://cdn.discordapp.com/attachments/788121984327745546/788122182789365780/image1.jpg')
+
+    if 'one peice' in message.content:
+        if message.author.id == 224988545402535936:
+            await user.kick()
+            await message.channel.send('https://cdn.discordapp.com/attachments/788121984327745546/788122182789365780/image1.jpg')
+
+    if 'one b °C' in message.content:
+        if message.author.id == 224988545402535936:
+            await user.kick()
+            await message.channel.send('https://cdn.discordapp.com/attachments/788121984327745546/788122182789365780/image1.jpg')
+
+    if ' ice ' in message.content.lower():
+        await message.channel.send(':cold_face:')
+
+    if message.content.startswith('!suicide'):
+        await user.kick()
+        await message.channel.send('https://cdn.discordapp.com/attachments/775943975055130625/795858624656048128/image0.jpg')
+
+    if message.content.startswith('op'):
+        if message.author.id == 224988545402535936:
+            await user.kick()
+            await message.channel.send('https://cdn.discordapp.com/attachments/788121984327745546/788122182789365780/image1.jpg')
+
+    if 'On3 P13c3' in message.content:
+        if message.author.id == 224988545402535936:
+            await user.kick()
+            await message.channel.send('https://cdn.discordapp.com/attachments/788121984327745546/788122182789365780/image1.jpg')
 
     if 'ur mom' in message.content:
         if message.author.id != 196762513172463617:
@@ -447,13 +704,13 @@ async def on_message(message):
         await message.channel.send(f"Vote {randomMember.mention} out. You've got at least a 10% chance of getting it "
                                    f"right.")
 
-    if len(message.attachments) >= 1:
-        await message.channel.send("Oh look at this guy, attaching images and stuff. You think you're so great don't you?")
+    if message.content.lower().startswith('$top1000'):
+        await message.delete()
 
     if 'lol' in message.content:
         await message.channel.send('https://media1.tenor.com/images/8305238eaf271487686de09c373b766b/tenor.gif?itemid=13864254')
 
-    if '$tumiroll' in message.content:
+    if 'tumiroll' in message.content:
         await message.channel.send('SHUT THE FUCK UP')
 
     if 'Lol' in message.content:
@@ -469,41 +726,47 @@ async def on_message(message):
     if 'Bye' in message.content:
         await message.channel.send('https://media1.tenor.com/images/f7b8f53a5ce812fd5bb422f5bf90dd4b/tenor.gif?itemid=19053721')
 
-    if '<@!251481402090979329>' in message.content:
-        await message.channel.send('<@!251481402090979329>')
 
-
-    if 'cat' in message.content:
-        await message.channel.send('<@251481402090979329>')
+    if ' cat  ' in message.content.lower():
         await message.channel.send('https://media.discordapp.net/attachments/775941210119733269/777561607839547402/image0.jpg?width=400&height=219')
 
-    if 'Cat' in message.content:
-        await message.channel.send('<@251481402090979329>')
-        await message.channel.send('https://media.discordapp.net/attachments/775941210119733269/777561607839547402/image0.jpg?width=400&height=219')
 
-    if 'dog' in message.content:
-        await message.channel.send('<@349682083922444298>')
-        await message.channel.send('https://tenor.com/view/butta-dawg-dog-with-the-butta-butta-dog-i-put-the-butter-on-him-the-dog-with-the-butter-butter-dog-gif-19244197')
 
-    if 'Dog' in message.content:
-        await message.channel.send('<@349682083922444298>')
-        await message.channel.send('https://tenor.com/view/butta-dawg-dog-with-the-butta-butta-dog-i-put-the-butter-on-him-the-dog-with-the-butter-butter-dog-gif-19244197')
 
-    if '$m' in message.content:
-        if message.content == '$m':
-            await message.channel.send('Jin-Woo Sung')
+    if message.content.lower().startswith('$m'):
+        if message.content.lower() == '$m':
+            await message.delete()
+        if message.content.lower() == '$ma':
+            await message.delete()
+        if message.content.lower() == '$mg':
+            await message.delete()
 
-    if '$h' in message.content:
-        if message.content == '$h':
-            await message.channel.send('Jin-Woo Sung')
+    if message.content.lower().startswith('$w'):
+        if message.content.lower() == '$w':
+            await message.delete()
+        if message.content.lower() == '$wa':
+            await message.delete()
+        if message.content.lower() == '$wg':
+            await message.delete()
 
-    if '$M' in message.content:
-        if message.content == '$M':
-            await message.channel.send('Jin-Woo Sung')
+    if message.content.lower().startswith('$h'):
+        if message.content.lower() == '$h':
+            await message.delete()
+        if message.content.lower() == '$ha':
+            await message.delete()
+        if message.content.lower() == '$hg':
+            await message.delete()
 
-    if '$H' in message.content:
-        if message.content == '$H':
-            await message.channel.send('Jin-Woo Sung')
+    if 'oatmeal raisin' in message.content:
+        await message.channel.send('***dammit***')
+
+    if 'Oatmeal Raisin' in message.content:
+        await message.channel.send('***dammit***')
+
+    if 'Oatmeal raisin' in message.content:
+        await message.channel.send('***dammit***')
+
+
 
     if message.content.startswith('!time'):
         timenow = datetime.datetime.now()
@@ -511,11 +774,63 @@ async def on_message(message):
         await message.channel.send("Current Time - " + current_time)
         print(timenow)
 
+
+    if message.channel.id == 775945092489805834:
+        if message.author.id == 251481402090979329:
+            await message.delete()
+        if message.author.id == 432610292342587392:
+            await message.delete()
+
+
+    if message.author.id != 251481402090979329:
+        if message.content.startswith('!wlcounter'):
+            dafile = open('storage.txt', 'r')
+            lines = list(dafile)
+            dafile.close()
+            wishcounter = 0
+            tjwishcounter = 0
+            natewishcounter = 0
+            loganwishcounter = 0
+            tumiwishcounter = 0
+            emmywishcounter = 0
+            sarahwishcounter = 0
+            willwishcounter = 0
+            for i in lines:
+                if 'Wished by <@' in i:
+                    wishcounter = wishcounter + 1
+                    if '349682083922444298' in i:
+                        tjwishcounter = tjwishcounter + 1
+                    if '224988545402535936' in i:
+                        natewishcounter = natewishcounter + 1
+                    if '251481402090979329' in i:
+                        loganwishcounter = loganwishcounter + 1
+                    if '196762513172463617' in i:
+                        tumiwishcounter = tumiwishcounter + 1
+                    if '641267423604899870' in i:
+                        emmywishcounter = emmywishcounter + 1
+                    if '427287857909071872' in i:
+                        sarahwishcounter = sarahwishcounter + 1
+                    if '304609945549275139' in i:
+                        willwishcounter = willwishcounter + 1
+            await message.channel.send('Number of Characters Rolled While Wishlisted: ' + str(wishcounter))
+            await message.channel.send("(Please keep in mind this is only characters who were actively on someone's wishlist when rolled)")
+            await message.channel.send('TJ - ' + str(tjwishcounter))
+            await message.channel.send('Nate - ' + str(natewishcounter))
+            await message.channel.send('Logan - ' + str(loganwishcounter))
+            await message.channel.send('Tumi - ' + str(tumiwishcounter))
+            await message.channel.send('Emmy - ' + str(emmywishcounter))
+            await message.channel.send('Sarah - ' + str(sarahwishcounter))
+            await message.channel.send('Will - ' + str(willwishcounter))
+
+
+
+
     if message.content.startswith('!encrypt'):
 
         encryptcontent = message.content
         encryptioncontent = encryptcontent.replace('!encrypt', '')
         def encryptionprocess():
+
             print('')
             for eachletter in encryptioncontent:
                 if eachletter in uppercase_index:
@@ -572,14 +887,11 @@ async def on_message(message):
         print('active')
 
 
-
 @client.event
 async def on_ready():
     print('Logged in as ' + client.user.name)
     print(client.user.id)
     print('----------------------------')
-
-
 
 
 client.run(TOKEN)
