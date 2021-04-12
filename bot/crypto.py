@@ -8,7 +8,7 @@ import datetime
 
 
 
-TOKEN = os.environ.get('BOTTOKEN')
+TOKEN = str(os.environ.get('BOTTOKEN'))
 
 encryptedtext = []
 encryptedvalues = []
